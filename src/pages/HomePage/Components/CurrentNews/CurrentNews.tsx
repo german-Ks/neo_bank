@@ -82,7 +82,7 @@ export const CurrentNews = () => {
         on the news you are interested in.
       </StyledCurrentText>
       <StyledCardsList ref={scrollRef}>
-        {newsState.map((item) => (
+        {/* {newsState.map((item) => (
           <StyledCurrentCardWrapper to={item.url} target="_blank">
             <StyledCard key={item.title}>
               <StyledCardImage src={item.urlToImage} alt="Картинка Новости" />
@@ -90,7 +90,27 @@ export const CurrentNews = () => {
               <StyledCardText>{item.description}</StyledCardText>
             </StyledCard>
           </StyledCurrentCardWrapper>
-        ))}
+        ))}  */}
+        {newsState
+          .filter(
+            (item) =>
+              item.description &&
+              item.urlToImage &&
+              item.urlToImage.startsWith("http")
+          )
+          .map((item) => (
+            <StyledCurrentCardWrapper
+              to={item.url}
+              target="_blank"
+              key={item.title}
+            >
+              <StyledCard>
+                <StyledCardImage src={item.urlToImage} alt="Картинка Новости" />
+                <StyledCardDescription>{item.title}</StyledCardDescription>
+                <StyledCardText>{item.description}</StyledCardText>
+              </StyledCard>
+            </StyledCurrentCardWrapper>
+          ))}
       </StyledCardsList>
       <StyledNewsButtons>
         <StyledBtnLeft onClick={scrollLeft} disabled={!canScrollLeft}>
