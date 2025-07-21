@@ -82,15 +82,6 @@ export const CurrentNews = () => {
         on the news you are interested in.
       </StyledCurrentText>
       <StyledCardsList ref={scrollRef}>
-        {/* {newsState.map((item) => (
-          <StyledCurrentCardWrapper to={item.url} target="_blank">
-            <StyledCard key={item.title}>
-              <StyledCardImage src={item.urlToImage} alt="Картинка Новости" />
-              <StyledCardDescription>{item.title}</StyledCardDescription>
-              <StyledCardText>{item.description}</StyledCardText>
-            </StyledCard>
-          </StyledCurrentCardWrapper>
-        ))}  */}
         {newsState
           .filter(
             (item) =>

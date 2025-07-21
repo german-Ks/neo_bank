@@ -21,7 +21,9 @@ export const Header = () => {
       </StyledLogoWrapper>
       <StyledMenuWrapper>
         {menuItems.map((el) => (
-          <StyledTextWrapper key={el.path}>{el.label}</StyledTextWrapper>
+          <StyledTextWrapper to="#" key={el.path}>
+            {el.label}
+          </StyledTextWrapper>
         ))}
       </StyledMenuWrapper>
       <StyledBtnWrapper>Online Bank</StyledBtnWrapper>

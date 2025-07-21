@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { styled } from "styled-components";
 
 export const StyledHeaderWrapper = styled.div`
@@ -28,10 +29,12 @@ export const StyledMenuWrapper = styled.div`
   }
 `;
 
-export const StyledTextWrapper = styled.p`
+export const StyledTextWrapper = styled(Link)`
   font-size: 16px;
   font-weight: 700;
   width: max-content;
+  text-decoration: none !important;
+  color: rgba(29, 25, 41, 1);
   @media (max-width: 600px) {
     font-size: 13px;
   }
