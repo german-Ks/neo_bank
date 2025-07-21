@@ -21,7 +21,7 @@ export const Header = () => {
       </StyledLogoWrapper>
       <StyledMenuWrapper>
         {menuItems.map((el) => (
-          <StyledTextWrapper to="#" key={el.path}>
+          <StyledTextWrapper to={el.path} key={el.path}>
             {el.label}
           </StyledTextWrapper>
         ))}

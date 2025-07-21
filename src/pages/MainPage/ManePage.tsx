@@ -8,6 +8,9 @@ export const MainPage = () => {
     <Routes>
       <Route path="/" element={<HomePage />} />
       <Route path="/credit-card" element={<CreditCardPage />} />
+      <Route path="/product" element={<CreditCardPage />} />
+      <Route path="/account" element={<CreditCardPage />} />
+      <Route path="/resources" element={<CreditCardPage />} />
     </Routes>
   );
 };
