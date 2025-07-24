@@ -24,10 +24,9 @@ export const CurrentNews = () => {
   const [newsState, setNewsState] = useState<TNews[]>([]);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(false);
-  const isMobile = useMedia({ maxWidth: "600px" });
-  useEffect(() => {
-    console.log(isMobile);
-  }, [isMobile]);
+  const [windowSize, setWindowSize] = useState(window.innerWidth);
+
+  const isTablet = useMedia({ maxWidth: "1000px" });
 
   const updateScrollButtons = () => {
     const el = scrollRef.current;
@@ -35,7 +34,7 @@ export const CurrentNews = () => {
     setCanScrollLeft(el.scrollLeft > 0);
     setCanScrollRight(el.scrollLeft + el.clientWidth < el.scrollWidth);
   };
-  const SCROLL_STEP = isMobile ? 400 : 500;
+  const SCROLL_STEP = isTablet ? 400 : 500;
   const scrollLeft = () => {
     scrollRef.current?.scrollBy({ left: -SCROLL_STEP, behavior: "smooth" });
   };
@@ -45,6 +44,12 @@ export const CurrentNews = () => {
   };
 
   useEffect(() => {
+    scrollRef.current?.scrollTo({ left: 0, behavior: "smooth" });
+  }, [windowSize]);
+
+  useEffect(() => {
+    const changeSize = () => setWindowSize(window.innerWidth);
+    window.addEventListener("resize", changeSize);
     const getApiNews = async () => {
       try {
         const data = await getNewsList();
@@ -54,6 +59,7 @@ export const CurrentNews = () => {
       }
     };
     getApiNews();
+    return () => window.removeEventListener("resize", changeSize);
   }, []);
 
   useEffect(() => {
